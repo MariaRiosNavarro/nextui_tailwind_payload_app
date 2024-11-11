@@ -145,9 +145,9 @@ Access the Payload admin panel at http://localhost:3000/admin to set up your fir
 
 ## C. Conexion Next + Payload
 
-1. Create a Card to reender the databbase Information of the Cards
+1. Create a component (e.g., a Card component) to display information from the Cards database collection.
 
-2. In pages/api create your first function for the route /GET all cards (I created getAllCards.ts)
+2. In the pages/api directory, create an API route to get all cards (e.g., getAllCards.ts):
 
 ```ts
 import type { NextApiRequest, NextApiResponse } from "next";
@@ -188,7 +188,7 @@ export default async function handler(
 }
 ```
 
-3. Where you want to reender the Cards make the fetch to your handler
+3. In the component where you want to render the cards, fetch data from your handler:
 
 ```tsx
 import { useEffect, useState } from "react";
