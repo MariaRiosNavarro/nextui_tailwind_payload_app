@@ -35,7 +35,7 @@ npm install framer
 
 ```
 
-5. Modify the tailwind.config.js file if you're not using ES modules:
+5. Modify the tailwind.config.js file if you're not using ES modules (remove 'import {nextui}...' and use 'const { nextui } = require("@nextui-org/theme")' version):
 
 ```js
 // tailwind.config.js
