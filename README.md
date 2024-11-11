@@ -3,17 +3,26 @@
 1.- Install Payload
 
 ```sh
-   npx create-payload-app payload
-   cd payload
+   npx create-payload-app@latest
 ```
 
-2.- Add extra Payload extra Packages
+Follow the Instructions, I used directly the MongoDB Atlas Conexion String (Use your data in <user>, <password> and <data_base_name>, and choose your Cluster, my is 0)
+
+```
+mongodb+srv://<user>:<password>@cluster0.hfwosz5.mongodb.net/<data_base_name>?retryWrites=true&w=majority&appName=Cluster0
+
+```
+
+![Bild1](/readmeAssets/bild1.png)
+
+2.- Add your extra Packages, I need a Editor
 
 ```sh
-npm install @payloadcms/plugin-richtext
+npm install --save @payloadcms/richtext-slate
+
 ```
 
-3.- Define Collections
+3.- Define Collections. User Collection is default in your 'Blank' template. Add the other Collections
 
 
 # Next.js & NextUI Template
