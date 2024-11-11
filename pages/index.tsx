@@ -22,8 +22,9 @@ export default function IndexPage() {
 
         setCards(data);
       } catch (error) {
-        // setError(error);
-        setError(error.message);
+        setError(
+          error instanceof Error ? error.message : "An unknown error occurred"
+        );
       } finally {
         setLoading(false);
       }

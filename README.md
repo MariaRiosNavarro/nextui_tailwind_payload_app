@@ -72,13 +72,13 @@ npm run dev
 
 ## B. Payload INTEGRATION:
 
-1.- Install Payload
+1.- Inside your Next App in the root, install Payload App
 
 ```sh
    npx create-payload-app@latest
 ```
 
-Follow the installation prompts. Name your Payload app (e.g., 'payload') and use your MongoDB or MongoDB Atlas connection string
+Follow the installation prompts. Name your Payload app (e.g., 'payload') and use your MongoDB or MongoDB Atlas connection string.
 
 For example with MongoDB Atlas String:
 
@@ -208,7 +208,7 @@ export default function IndexPage() {
           throw new Error("Network response was not ok");
         }
 
-        const data: CardProps[] = await response.json(); 
+        const data: CardProps[] = await response.json();
         setCards(data);
       } catch (error) {
         // setError(error);
