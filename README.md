@@ -285,3 +285,4 @@ Licensed nextui under the [MIT license](https://github.com/nextui-org/next-pages
 - [TypeScript](https://www.typescriptlang.org)
 - [Framer Motion](https://www.framer.com/motion)
 - [next-themes](https://github.com/pacocoursey/next-themes)
+- [payloadcms](https://payloadcms.com/)
