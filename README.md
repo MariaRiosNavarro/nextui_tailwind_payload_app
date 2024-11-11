@@ -72,7 +72,7 @@ npm run dev
 
 ## B. Payload INTEGRATION:
 
-1.- Inside your Next App in the root, install Payload App
+1. Inside your Next App in the root, install Payload App
 
 ```sh
    npx create-payload-app@latest
@@ -91,14 +91,14 @@ mongodb+srv://<user>:<password>@cluster0.hfwosz5.mongodb.net/<data_base_name>?re
 
 ```
 
-2.- Install additional packages (e.g., rich text editor):
+2. Install additional packages (e.g., rich text editor):
 
 ```sh
 npm install --save @payloadcms/richtext-slate
 
 ```
 
-3.- Create new Collections. User Collection is default in your 'Blank' template. I added my new Collection 'Cards'. Update your payload.config.ts file to include new collections and the rich text editor/extra dependencies:
+3. Create new Collections. User Collection is default in your 'Blank' template. I added my new Collection 'Cards'. Update your payload.config.ts file to include new collections and the rich text editor/extra dependencies:
 
 ```js
 import path from "path";
@@ -135,7 +135,7 @@ export default buildConfig({
 });
 ```
 
-4.- Navigate to the Payload folder and run:
+4. Navigate to the Payload folder and run:
 
 ```
 npm run dev
