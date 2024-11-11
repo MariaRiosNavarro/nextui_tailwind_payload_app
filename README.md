@@ -82,14 +82,14 @@ npm run dev
 
 Follow the installation prompts. Name your Payload app (e.g., 'payload') and use in the installation the connection string to your Database, for example your MongoDB or MongoDB Atlas connection string.
 
-For example with MongoDB Atlas String:
+![Bild1](/readmeAssets/bild1.png)
+
+For example the Conexion String with MongoDB Atlas String is like this:
 
 ```
 mongodb+srv://<user>:<password>@cluster0.hfwosz5.mongodb.net/<data_base_name>?retryWrites=true&w=majority&appName=Cluster0
 
 ```
-
-![Bild1](/readmeAssets/bild1.png)
 
 2.- Install additional packages (e.g., rich text editor):
 
