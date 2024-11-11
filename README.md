@@ -78,6 +78,8 @@ npm run dev
    npx create-payload-app@latest
 ```
 
+![Bild2](/readmeAssets/bild2.png)
+
 Follow the installation prompts. Name your Payload app (e.g., 'payload') and use your MongoDB or MongoDB Atlas connection string.
 
 For example with MongoDB Atlas String:
