@@ -80,11 +80,11 @@ npm run dev
 
 ![Bild2](/readmeAssets/bild2.png)
 
-Follow the installation prompts. Name your Payload app (e.g., 'payload') and use in the installation the connection string to your Database, for example your MongoDB or MongoDB Atlas connection string.
+   Follow the installation prompts. Name your Payload app (e.g., 'payload') and use in the installation the connection string to your Database, for example your MongoDB or MongoDB Atlas connection string.
 
 ![Bild1](/readmeAssets/bild1.png)
 
-For example the Conexion String with MongoDB Atlas String is like this:
+   For example the Conexion String with MongoDB Atlas String is like this:
 
 ```
 mongodb+srv://<user>:<password>@cluster0.hfwosz5.mongodb.net/<data_base_name>?retryWrites=true&w=majority&appName=Cluster0
