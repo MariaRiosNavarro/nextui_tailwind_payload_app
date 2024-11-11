@@ -3,6 +3,7 @@ import path from "path";
 import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
+// I add it the Editor
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 
@@ -14,7 +15,9 @@ export default buildConfig({
     user: Users.slug,
     bundler: webpackBundler(),
   },
+  // I add it the Editor
   editor: slateEditor({}),
+  // I add it the New Collection
   collections: [Users, Cards],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),

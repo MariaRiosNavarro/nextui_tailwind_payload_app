@@ -18,7 +18,7 @@ export default function IndexPage() {
           throw new Error("Network response was not ok");
         }
 
-        const data: CardProps[] = await response.json(); // Asegúrate de que sea un array
+        const data: CardProps[] = await response.json();
 
         setCards(data);
       } catch (error) {
