@@ -272,6 +272,12 @@ export default function IndexPage() {
 }
 ```
 
+## D. Run the Project
+
+1. Go to the /payload/ directory and run 'npm run dev' for PAYLOAD in a terminal. Then, open http://localhost:3000/admin in a browser and log in.
+
+2. In another terminal, remeins in the root directory and run 'npm run dev' for NEXT. Open http://localhost:3000 in a browser, where you should see the Cards info.
+
 ## License
 
 Licensed nextui under the [MIT license](https://github.com/nextui-org/next-pages-template/blob/main/LICENSE).
