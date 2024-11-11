@@ -1,60 +1,79 @@
-// import { Link } from "@nextui-org/link";
-// import { Snippet } from "@nextui-org/snippet";
-// import { Code } from "@nextui-org/code";
-// import { button as buttonStyles } from "@nextui-org/theme";
+import { useEffect, useState } from "react";
 
-// import { siteConfig } from "@/config/site";
-// import { title, subtitle } from "@/components/primitives";
-// import { GithubIcon } from "@/components/icons";
+import { CardProps } from "../types/index";
+
 import DefaultLayout from "@/layouts/default";
 
 export default function IndexPage() {
+  const [cards, setCards] = useState<CardProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchCards() {
+      try {
+        const response = await fetch("/api/getAllCards");
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data: CardProps[] = await response.json(); // Asegúrate de que sea un array
+
+        setCards(data);
+      } catch (error) {
+        // setError(error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchCards();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <h2>Python Cards</h2>
-        {/* <div className="inline-block max-w-xl text-center justify-center">
-          <span className={title()}>Make&nbsp;</span>
-          <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-          <br />
-          <span className={title()}>
-            websites regardless of your design experience.
-          </span>
-          <div className={subtitle({ class: "mt-4" })}>
-            Beautiful, fast and modern React UI library.
-          </div>
-        </div> */}
 
-        {/* <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            Documentation
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
+        <div className="container mx-auto p-4">
+          {cards.map((card) => (
+            <div key={card.id} className="card mb-4 p-4 border rounded-lg">
+              <h2 className="text-xl font-bold">{card.title}</h2>
+              {/* Serialization  */}
+              <div>
+                {card.description.map((line, index) => (
+                  <p key={index}>
+                    {line.children.map((child, childIndex) => (
+                      <span key={childIndex}>
+                        {child.bold ? (
+                          <strong>{child.text}</strong>
+                        ) : (
+                          child.text
+                        )}
+                        {child.code && <code>{child.text}</code>}
+                        {child.italic && <em>{child.text}</em>}
+                      </span>
+                    ))}
+                  </p>
+                ))}
+              </div>
+              <p className="italic">{card.category}</p>
+              <pre className="bg-gray-200 text-secondary p-2 rounded">
+                {card.codeExample}
+              </pre>
+            </div>
+          ))}
         </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
-            </span>
-          </Snippet>
-        </div> */}
       </section>
     </DefaultLayout>
   );
