@@ -105,11 +105,12 @@ import path from "path";
 import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
-// I add it the Editor
+// Import of the Editor
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 
 import Users from "./collections/Users";
+// Import of the  New Collection Cards
 import Cards from "./collections/Cards";
 
 export default buildConfig({
@@ -119,7 +120,7 @@ export default buildConfig({
   },
   // I add it the Editor
   editor: slateEditor({}),
-  // I add it the New Collection
+  // I add it the New Collection Cards
   collections: [Users, Cards],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),
