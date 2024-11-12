@@ -3,11 +3,12 @@ import path from "path";
 import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
-// I add it the Editor
+// Import of the Editor
 import { slateEditor } from "@payloadcms/richtext-slate";
 import { buildConfig } from "payload/config";
 
 import Users from "./collections/Users";
+// Import of the  New Collection Cards
 import Cards from "./collections/Cards";
 
 export default buildConfig({
@@ -15,7 +16,7 @@ export default buildConfig({
     user: Users.slug,
     bundler: webpackBundler(),
   },
-  // I add it the Editor
+  // I add it the Editor and the Editor Options
   editor: slateEditor({
     admin: {
       elements: [
@@ -36,7 +37,7 @@ export default buildConfig({
       leaves: ["bold", "italic", "underline", "strikethrough", "code"],
     },
   }),
-  // I add it the New Collection
+  // I add it the New Collection Cards
   collections: [Users, Cards],
   typescript: {
     outputFile: path.resolve(__dirname, "payload-types.ts"),

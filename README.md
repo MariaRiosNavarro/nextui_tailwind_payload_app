@@ -80,11 +80,11 @@ npm run dev
 
 ![Bild2](/readmeAssets/bild2.png)
 
-   Follow the installation prompts. Name your Payload app (e.g., 'payload') and use in the installation the connection string to your Database, for example your MongoDB or MongoDB Atlas connection string.
+Follow the installation prompts. Name your Payload app (e.g., 'payload') and use in the installation the connection string to your Database, for example your MongoDB or MongoDB Atlas connection string.
 
 ![Bild1](/readmeAssets/bild1.png)
 
-   For example the Conexion String with MongoDB Atlas String is like this:
+For example the Conexion String with MongoDB Atlas String is like this:
 
 ```
 mongodb+srv://<user>:<password>@cluster0.hfwosz5.mongodb.net/<data_base_name>?retryWrites=true&w=majority&appName=Cluster0
@@ -102,6 +102,7 @@ npm install --save @payloadcms/richtext-slate
 
 ```js
 import path from "path";
+
 import { payloadCloud } from "@payloadcms/plugin-cloud";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { webpackBundler } from "@payloadcms/bundler-webpack";
@@ -118,8 +119,27 @@ export default buildConfig({
     user: Users.slug,
     bundler: webpackBundler(),
   },
-  // I add it the Editor
-  editor: slateEditor({}),
+  // I add it the Editor and the Editor Options
+  editor: slateEditor({
+    admin: {
+      elements: [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "blockquote",
+        "link",
+        "ol",
+        "ul",
+        "textAlign",
+        "indent",
+        "relationship",
+      ],
+      leaves: ["bold", "italic", "underline", "strikethrough", "code"],
+    },
+  }),
   // I add it the New Collection Cards
   collections: [Users, Cards],
   typescript: {
@@ -152,39 +172,27 @@ Access the Payload admin panel at http://localhost:3000/admin to set up your fir
 ```ts
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Card = {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  codeExample: string;
-};
-
-type ApiResponse = {
-  docs: Card[];
-  totalDocs: number;
-  limit: number;
-  totalPages: number;
-  page: number;
-  pagingCounter: number;
-  hasPrevPage: boolean;
-  hasNextPage: boolean;
-  prevPage: number | null;
-  nextPage: number | null;
-};
+import { ApiResponse, ApiCard } from "../../types";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Card[]>
+  res: NextApiResponse<ApiCard[] | { message: string }>
 ) {
-  const response = await fetch("http://localhost:3000/api/cards");
-  const apiResponse: ApiResponse = await response.json();
+  try {
+    const response = await fetch("http://localhost:3000/api/cards");
 
-  if (!response.ok) {
-    return res.status(response.status).json(apiResponse.docs);
+    if (!response.ok) {
+      return res.status(response.status).json({ message: response.statusText });
+    }
+
+    const apiResponse: ApiResponse = await response.json();
+
+    return res.status(200).json(apiResponse.docs);
+  } catch (error) {
+    console.log("Error :", error);
+
+    return res.status(500).json({ message: "Error fetching data" });
   }
-
-  return res.status(200).json(apiResponse.docs);
 }
 ```
 
@@ -194,6 +202,8 @@ export default async function handler(
 import { useEffect, useState } from "react";
 
 import { CardProps } from "../types/index";
+
+import Card from "./../components/Card";
 
 import DefaultLayout from "@/layouts/default";
 
@@ -212,10 +222,12 @@ export default function IndexPage() {
         }
 
         const data: CardProps[] = await response.json();
+
         setCards(data);
       } catch (error) {
-        // setError(error);
-        setError(error.message);
+        setError(
+          error instanceof Error ? error.message : "An unknown error occurred"
+        );
       } finally {
         setLoading(false);
       }
@@ -239,31 +251,14 @@ export default function IndexPage() {
 
         <div className="container mx-auto p-4">
           {cards.map((card) => (
-            <div key={card.id} className="card mb-4 p-4 border rounded-lg">
-              <h2 className="text-xl font-bold">{card.title}</h2>
-              {/* Serialization  */}
-              <div>
-                {card.description.map((line, index) => (
-                  <p key={index}>
-                    {line.children.map((child, childIndex) => (
-                      <span key={childIndex}>
-                        {child.bold ? (
-                          <strong>{child.text}</strong>
-                        ) : (
-                          child.text
-                        )}
-                        {child.code && <code>{child.text}</code>}
-                        {child.italic && <em>{child.text}</em>}
-                      </span>
-                    ))}
-                  </p>
-                ))}
-              </div>
-              <p className="italic">{card.category}</p>
-              <pre className="bg-gray-200 text-secondary p-2 rounded">
-                {card.codeExample}
-              </pre>
-            </div>
+            <Card
+              key={card.id}
+              category={card.category}
+              codeExample={card.codeExample}
+              description={card.description}
+              id={card.id}
+              title={card.title}
+            />
           ))}
         </div>
       </section>
