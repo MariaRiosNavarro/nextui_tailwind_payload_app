@@ -63,7 +63,7 @@ module.exports = {
 };
 ```
 
-6. Start the development server:
+6. Start the development server to check its works, wenn everything works, kann you close the terminal:
 
 ```
 npm run dev
@@ -141,7 +141,7 @@ export default buildConfig({
 npm run dev
 ```
 
-Access the Payload admin panel at http://localhost:3000/admin to set up your first admin user.
+Access the Payload admin panel at http://localhost:3000/admin to set up your first admin user. (CHECK THAT http://localhost:3000 IST FREE)
 
 ## C. Conexion Next + Payload
 
