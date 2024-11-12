@@ -274,9 +274,9 @@ export default function IndexPage() {
 
 ## D. Run the Project
 
-1. Go to the /payload/ directory and run 'npm run dev' for PAYLOAD in a terminal. Then, open http://localhost:3000/admin in a browser and log in.
+1. Go to the /payload/ directory and run 'npm run dev' for PAYLOAD in a terminal. Then, open http://localhost:3000/admin in a browser and log in. Create some Cards Items in the Collection Cards.
 
-2. In another terminal, remeins in the root directory and run 'npm run dev' for NEXT. Open http://localhost:3000 in a browser, where you should see the Cards info.
+2. In another terminal, remeins in the root directory and run 'npm run dev' for NEXTUI. Open in your browser, the recomended localhost port you see in terminal. Now you should see the Cards info in Browser.
 
 ## License
 
