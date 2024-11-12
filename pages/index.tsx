@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { CardProps } from "../types/index";
 
+import Card from "./../components/Card";
+
 import DefaultLayout from "@/layouts/default";
 
 export default function IndexPage() {
@@ -48,31 +50,14 @@ export default function IndexPage() {
 
         <div className="container mx-auto p-4">
           {cards.map((card) => (
-            <div key={card.id} className="card mb-4 p-4 border rounded-lg">
-              <h2 className="text-xl font-bold">{card.title}</h2>
-              {/* Serialization  */}
-              <div>
-                {card.description.map((line, index) => (
-                  <p key={index}>
-                    {line.children.map((child, childIndex) => (
-                      <span key={childIndex}>
-                        {child.bold ? (
-                          <strong>{child.text}</strong>
-                        ) : (
-                          child.text
-                        )}
-                        {child.code && <code>{child.text}</code>}
-                        {child.italic && <em>{child.text}</em>}
-                      </span>
-                    ))}
-                  </p>
-                ))}
-              </div>
-              <p className="italic">{card.category}</p>
-              <pre className="bg-gray-200 text-secondary p-2 rounded">
-                {card.codeExample}
-              </pre>
-            </div>
+            <Card
+              key={card.id}
+              category={card.category}
+              codeExample={card.codeExample}
+              description={card.description}
+              id={card.id}
+              title={card.title}
+            />
           ))}
         </div>
       </section>

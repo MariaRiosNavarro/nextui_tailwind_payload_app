@@ -1,55 +1,111 @@
 import * as React from "react";
-
 import { DescriptionLine, CardProps } from "../types/index";
 
-// Función para serializar la descripción
 const serializeDescription = (description: DescriptionLine[]) => {
   return description.map((line, index) => {
-    return (
-      <p key={index}>
-        {line.children.map((child, childIndex) => {
-          // Crear un array para almacenar los elementos JSX
-          const elements: JSX.Element[] = [];
+    let content: React.ReactNode = null;
 
-          // Agregar el texto normal
-          elements.push(<span key={childIndex}>{child.text}</span>);
+    switch (line.type) {
+      case "h3":
+        content = (
+          <h3 key={index} className="text-[#3771A3] text-center text-lg">
+            {line.children.map((child) => child.text)}
+          </h3>
+        );
+        break;
+      case "h4":
+        content = (
+          <h4 key={index} className="text-[#3771A3] text-center text-md">
+            {line.children.map((child) => child.text)}
+          </h4>
+        );
+        break;
+      case "h5":
+        content = (
+          <h5 key={index} className="text-[#3771A3] text-center text-sm">
+            {line.children.map((child) => child.text)}
+          </h5>
+        );
+        break;
+      case "h6":
+        content = (
+          <h6 key={index} className="text-[#3771A3] text-center text-xs">
+            {line.children.map((child) => child.text)}
+          </h6>
+        );
+        break;
+      case "code":
+        content = (
+          <pre className="bg-default-100 my-2 p-2 rounded-md font-serif text-[#3771A3]">
+            <code>{line.children[0].text}</code>
+          </pre>
+        );
+        break;
+      case "ul":
+        content = (
+          <ul key={index} className="list-disc pl-5">
+            {line.children.map((child, childIndex) => (
+              <li key={childIndex}>
+                {child.children &&
+                  child.children.map(
+                    (subChild: { text: any }) => subChild.text
+                  )}
+              </li>
+            ))}
+          </ul>
+        );
+        break;
+      case "ol":
+        content = (
+          <ol key={index} className="list-decimal pl-6">
+            {line.children.map((child, childIndex) => (
+              <li key={childIndex}>
+                {child.children &&
+                  child.children.map(
+                    (subChild: { text: any }) => subChild.text
+                  )}
+              </li>
+            ))}
+          </ol>
+        );
+        break;
+      default:
+        content = (
+          <p key={index}>
+            {line.children.map((child, childIndex) => {
+              let childContent: React.ReactNode = child.text;
 
-          // Aplicar estilos según las propiedades
-          if (child.bold) {
-            elements.push(
-              <strong key={`bold-${childIndex}`}>{child.text}</strong>
-            );
-          }
+              if (child.bold) childContent = <strong>{childContent}</strong>;
+              if (child.italic) childContent = <em>{childContent}</em>;
+              if (child.underline) childContent = <u>{childContent}</u>;
 
-          if (child.code) {
-            elements.push(<code key={`code-${childIndex}`}>{child.text}</code>);
-          }
+              return (
+                <React.Fragment key={childIndex}>{childContent}</React.Fragment>
+              );
+            })}
+          </p>
+        );
+    }
 
-          if (child.italic) {
-            elements.push(<em key={`italic-${childIndex}`}>{child.text}</em>);
-          }
-
-          return <>{elements}</>;
-        })}
-      </p>
-    );
+    return <React.Fragment key={index}>{content}</React.Fragment>;
   });
 };
 
 const Card: React.FC<CardProps> = ({
+  id,
   title,
   description,
   category,
   codeExample,
 }) => {
   return (
-    <div className="card">
-      <h2>{title}</h2>
+    <div key={id} className="card pb-4">
+      <h2 className="text-lg bold text-center pb-4">{title}</h2>
       <div className="description">{serializeDescription(description)}</div>
-      <p>
+      <p className="border border-secondary p-4 rounded">
         <strong>Category:</strong> {category}
       </p>
-      <pre>
+      <pre className="bg-default-100">
         <code>{codeExample}</code>
       </pre>
     </div>

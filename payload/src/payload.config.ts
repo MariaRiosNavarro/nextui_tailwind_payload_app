@@ -16,7 +16,26 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   // I add it the Editor
-  editor: slateEditor({}),
+  editor: slateEditor({
+    admin: {
+      elements: [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "blockquote",
+        "link",
+        "ol",
+        "ul",
+        "textAlign",
+        "indent",
+        "relationship",
+      ],
+      leaves: ["bold", "italic", "underline", "strikethrough", "code"],
+    },
+  }),
   // I add it the New Collection
   collections: [Users, Cards],
   typescript: {

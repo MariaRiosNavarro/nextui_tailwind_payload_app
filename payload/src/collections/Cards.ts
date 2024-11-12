@@ -18,7 +18,38 @@ const Cards: CollectionConfig = {
     {
       name: "description",
       type: "richText",
-      editor: slateEditor({}),
+      editor: slateEditor({
+        admin: {
+          elements: [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "blockquote",
+            "link",
+            "ol",
+            "ul",
+            "textAlign",
+            "indent",
+            "relationship",
+          ],
+          leaves: ["bold", "italic", "underline", "strikethrough", "code"],
+          link: {
+            // Inject your own fields into the Link element
+            fields: [
+              {
+                name: "rel",
+                label: "Rel Attribute",
+                type: "select",
+                hasMany: true,
+                options: ["noopener", "noreferrer", "nofollow"],
+              },
+            ],
+          },
+        },
+      }),
     },
     {
       name: "category",
