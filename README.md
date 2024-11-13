@@ -23,6 +23,7 @@
 ```bash
 
 cd your-project-name
+npm install
 
 ```
 
