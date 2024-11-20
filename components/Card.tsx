@@ -101,7 +101,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div key={id} className="card pb-8 flex flex-col gap-6">
-      <h2 className="text-lg bold text-center text-secondary-500 pb-4">
+      <h2 className="text-lg text-[#FFD445] bold text-center bg-[#3771A3] py-4 rounded-md">
         {title}
       </h2>
       <div className="description">{serializeDescription(description)}</div>
