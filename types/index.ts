@@ -24,7 +24,8 @@ export interface DescriptionLine {
   type: String;
 }
 export interface CardProps {
-  id: string; // Añadido el id
+  id: string;
+  order: number;
   title: string;
   description: DescriptionLine[];
   category: string;

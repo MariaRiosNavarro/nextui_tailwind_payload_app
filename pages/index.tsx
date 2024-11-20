@@ -22,7 +22,9 @@ export default function IndexPage() {
 
         const data: CardProps[] = await response.json();
 
-        setCards(data);
+        const orderedData = data.sort((a, b) => a.order - b.order);
+
+        setCards(orderedData);
       } catch (error) {
         setError(
           error instanceof Error ? error.message : "An unknown error occurred"
@@ -52,6 +54,7 @@ export default function IndexPage() {
           {cards.map((card) => (
             <Card
               key={card.id}
+              order={card.order}
               category={card.category}
               codeExample={card.codeExample}
               description={card.description}
