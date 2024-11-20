@@ -54,11 +54,11 @@ export default function IndexPage() {
           {cards.map((card) => (
             <Card
               key={card.id}
-              order={card.order}
               category={card.category}
               codeExample={card.codeExample}
               description={card.description}
               id={card.id}
+              order={card.order}
               title={card.title}
             />
           ))}
