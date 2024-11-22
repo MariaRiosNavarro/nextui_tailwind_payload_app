@@ -58,10 +58,10 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout cardItems={cardItems}>
-      <section className="flex flex-col items-center justify-center gap-4  md:py-10">
-        <h2 className="text-xl pt-12 pb-8">Python Cards</h2>
+      <section className="flex flex-col items-center justify-center  md:py-10">
+        {/* <h2 className="text-xl pt-12 pb-8">Python Cards</h2> */}
 
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto">
           {cards.map((card) => (
             <Card
               key={card.id}

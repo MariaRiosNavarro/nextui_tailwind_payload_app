@@ -60,7 +60,7 @@ export const Navbar = ({
   );
 
   return (
-    <NextUINavbar maxWidth="xl">
+    <NextUINavbar className="fixed top-0 left-0 right-0 z-50" maxWidth="xl">
       <NavbarContent
         className="basis-1/5 sm:basis-full flex-col  items-start pt-2"
         justify="start"
@@ -71,7 +71,7 @@ export const Navbar = ({
             <p className="font-bold text-inherit">Python Cards</p>
           </NextLink>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-center ml-2 flex-wrap border  text-[#FFD445] bold text-center bg-[#3771A3] p-4 rounded-md absolute top-16 left-0 right-0">
+        <div className="hidden lg:flex gap-4 justify-center ml-2 flex-wrap  text-[#FFD445] bold text-center bg-[#3771A3] p-4 rounded-md absolute top-16 left-4 right-6">
           {cardItems.map((item) => (
             <NavbarItem key={item.id}>
               <NextLink className=" hover:text-white" href={`#${item.id}`}>
@@ -128,16 +128,9 @@ export const Navbar = ({
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 className="font-bold"
-                style={{ color: theme === "dark" ? "#FFD445" : "#3771A3" }}
-                // color={
-                //   index === 2
-                //     ? "primary"
-                //     : index === cardItems.length - 1
-                //       ? "danger"
-                //       : "foreground"
-                // }
                 href={`#${item.id}`}
                 size="lg"
+                style={{ color: theme === "dark" ? "#FFD445" : "#3771A3" }}
               >
                 {item.title}
               </Link>

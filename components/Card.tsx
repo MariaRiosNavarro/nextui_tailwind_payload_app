@@ -121,7 +121,11 @@ const Card: React.FC<CardProps> = ({
   const theme = useTheme().theme || "light";
 
   return (
-    <div key={id} className="card pb-8 flex flex-col" id={id}>
+    <div
+      key={id}
+      className="card pb-8 flex flex-col pt-20  md:pt-10 lg:pt-48 "
+      id={id}
+    >
       <h2 className="text-lg text-[#FFD445] bold text-center bg-[#3771A3] py-4 rounded-md">
         {title}
       </h2>
