@@ -1,8 +1,19 @@
 import express from "express";
 import payload from "payload";
+import cors from "cors";
 
 require("dotenv").config();
 const app = express();
+
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3001", // Permitir solicitudes desde este origen
+      "http://localhost:3000/admin",
+    ],
+    credentials: true, // Permitir el uso de credenciales (opcional)
+  })
+);
 
 // Redirect root to Admin panel
 app.get("/", (_, res) => {
