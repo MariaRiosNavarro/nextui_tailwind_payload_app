@@ -5,13 +5,13 @@ export const siteConfig = {
   description: "Learning Python.",
   navItems: [
     {
-      label: "Home",
+      label: "Cards",
       href: "/",
     },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
+    // {
+    //   label: "Docs",
+    //   href: "/docs",
+    // },
     // {
     //   label: "Pricing",
     //   href: "/pricing",
@@ -20,15 +20,15 @@ export const siteConfig = {
     //   label: "Blog",
     //   href: "/blog",
     // },
-    {
-      label: "About",
-      href: "/about",
-    },
+    // {
+    //   label: "About",
+    //   href: "/about",
+    // },
   ],
   navMenuItems: [
     {
-      label: "Profile",
-      href: "/profile",
+      label: "Cards",
+      href: "/",
     },
     {
       label: "Dashboard",
@@ -60,10 +60,10 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
-    twitter: "https://twitter.com/getnextui",
-    docs: "https://nextui.org",
-    discord: "https://discord.gg/9b6yyZKmH4",
-    sponsor: "https://patreon.com/jrgarciadev",
+    github: "https://github.com/MariaRiosNavarro",
+    // twitter: "https://twitter.com/getnextui",
+    // docs: "https://nextui.org",
+    // discord: "https://discord.gg/9b6yyZKmH4",
+    // sponsor: "https://patreon.com/jrgarciadev",
   },
 };

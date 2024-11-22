@@ -14,6 +14,10 @@ module.exports = {
         sans: ["var(--font-sans)"],
         mono: ["var(--font-mono)"],
       },
+      colors: {
+        "code-dark": "#FFD445",
+        "code-light": "#3771A3",
+      },
     },
   },
   darkMode: "class",

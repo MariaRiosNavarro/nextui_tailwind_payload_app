@@ -12,8 +12,10 @@ import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import { link as linkStyles } from "@nextui-org/theme";
+import { useTheme } from "next-themes";
 import NextLink from "next/link";
 import clsx from "clsx";
+// import { useState } from "react";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
@@ -27,7 +29,15 @@ import {
   PythonLogo,
 } from "@/components/icons";
 
-export const Navbar = () => {
+export const Navbar = ({
+  cardItems,
+}: {
+  cardItems: { id: string; title: string }[];
+}) => {
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const theme = useTheme().theme || "light";
+
   const searchInput = (
     <Input
       aria-label="Search"
@@ -50,26 +60,22 @@ export const Navbar = () => {
   );
 
   return (
-    <NextUINavbar maxWidth="xl" position="sticky">
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+    <NextUINavbar maxWidth="xl">
+      <NavbarContent
+        className="basis-1/5 sm:basis-full flex-col  items-start pt-2"
+        justify="start"
+      >
+        <NavbarBrand className="gap-3 max-w-fit  justify-center">
+          <NextLink className="flex justify-center items-center gap-1" href="/">
             <PythonLogo />
             <p className="font-bold text-inherit">Python Cards</p>
           </NextLink>
         </NavbarBrand>
-        <div className="hidden lg:flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium hover:text-secondary-400 transition-colors duration-300"
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
+        <div className="hidden lg:flex gap-4 justify-center ml-2 flex-wrap border  text-[#FFD445] bold text-center bg-[#3771A3] p-4 rounded-md absolute top-16 left-0 right-0">
+          {cardItems.map((item) => (
+            <NavbarItem key={item.id}>
+              <NextLink className=" hover:text-white" href={`#${item.id}`}>
+                {item.title}
               </NextLink>
             </NavbarItem>
           ))}
@@ -115,23 +121,25 @@ export const Navbar = () => {
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarMenu>
-        {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
+      <NavbarMenu className="flex flex-row gap-2 items-center border">
+        <NavbarMenuToggle className="h-[2rem]" />
+        <div className="flex flex-col gap-2 ">
+          {cardItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
+                className="font-bold"
+                style={{ color: theme === "dark" ? "#FFD445" : "#3771A3" }}
+                // color={
+                //   index === 2
+                //     ? "primary"
+                //     : index === cardItems.length - 1
+                //       ? "danger"
+                //       : "foreground"
+                // }
+                href={`#${item.id}`}
                 size="lg"
               >
-                {item.label}
+                {item.title}
               </Link>
             </NavbarMenuItem>
           ))}

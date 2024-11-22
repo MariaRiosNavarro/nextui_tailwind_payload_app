@@ -6,13 +6,15 @@ import { Navbar } from "@/components/navbar";
 
 export default function DefaultLayout({
   children,
+  cardItems,
 }: {
   children: React.ReactNode;
+  cardItems: { id: string; title: string }[];
 }) {
   return (
     <div className="relative flex flex-col h-screen">
       <Head />
-      <Navbar />
+      <Navbar cardItems={cardItems} />
       <main className="container mx-auto max-w-7xl px-6 flex-grow pt-16">
         {children}
       </main>
