@@ -30,6 +30,8 @@ export default function IndexPage() {
 
         const orderedData = responseDocs.sort((a, b) => a.order - b.order);
 
+        console.log("card", orderedData[3]);
+
         setCards(orderedData);
       } catch (error) {
         setError(

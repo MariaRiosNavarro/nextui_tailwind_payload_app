@@ -4,25 +4,24 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-export type Text = {
-  text: string;
+export interface DescriptionChild {
+  text?: string;
   bold?: boolean;
   italic?: boolean;
   code?: boolean;
-};
+  underline?: boolean;
+  strikethrough?: boolean;
+  type?: string;
+  url?: string;
+  newTab?: boolean;
+  children?: Array<DescriptionChild>;
+}
 
 export interface DescriptionLine {
-  children: Array<{
-    children: any;
-    text: string;
-    bold?: boolean;
-    italic?: boolean;
-    code?: boolean;
-    underline?: boolean;
-    strikethrought?: boolean;
-  }>;
-  type: String;
+  children: Array<DescriptionChild>;
+  type: string;
 }
+
 export interface CardProps {
   id: string;
   order: number;
