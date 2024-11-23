@@ -4,123 +4,6 @@ import * as React from "react";
 
 import { DescriptionLine, DescriptionChild, CardProps } from "../types/index";
 
-// const serializeDescription = (
-//   description: DescriptionLine[],
-//   theme: string
-// ) => {
-//   return description.map((line, index) => {
-//     let content: React.ReactNode = null;
-
-//     switch (line.type) {
-//       case "h3":
-//         content = (
-//           <h3
-//             key={index}
-//             className="text-[#3771A3] text-center text-lg py-8 font-bold"
-//           >
-//             {line.children.map((child) => child.text)}
-//           </h3>
-//         );
-//         break;
-//       case "h4":
-//         content = (
-//           <h4
-//             key={index}
-//             className="text-[#3771A3] text-center text-md py-8 font-bold"
-//           >
-//             {line.children.map((child) => child.text)}
-//           </h4>
-//         );
-//         break;
-//       case "h5":
-//         content = (
-//           <h5
-//             key={index}
-//             className="text-[#3771A3] text-center text-sm py-8 font-bold"
-//           >
-//             {line.children.map((child) => child.text)}
-//           </h5>
-//         );
-//         break;
-//       case "h6":
-//         content = (
-//           <h6
-//             key={index}
-//             className="text-[#3771A3] text-center text-xs py-8 font-bold"
-//           >
-//             {line.children.map((child) => child.text)}
-//           </h6>
-//         );
-//         break;
-//       case "code":
-//         content = (
-//           <pre
-//             className="bg-default-100 my-2 p-4 rounded-md font-serif"
-//             style={{ color: theme === "dark" ? "#FFD445" : "#3771A3" }}
-//           >
-//             <code>{line.children[0].text}</code>
-//           </pre>
-//         );
-//         break;
-//       case "ul":
-//         content = (
-//           <ul key={index} className="list-disc pl-5">
-//             {line.children.map((child, childIndex) => (
-//               <li key={childIndex}>
-//                 {child.children &&
-//                   child.children.map(
-//                     (subChild: { text: any }) => subChild.text
-//                   )}
-//               </li>
-//             ))}
-//           </ul>
-//         );
-//         break;
-//       case "ol":
-//         content = (
-//           <ol key={index} className="list-decimal pl-6">
-//             {line.children.map((child, childIndex) => (
-//               <li key={childIndex}>
-//                 {child.children &&
-//                   child.children.map(
-//                     (subChild: { text: any }) => subChild.text
-//                   )}
-//               </li>
-//             ))}
-//           </ol>
-//         );
-//         break;
-//       case "link":
-//         // NO SE
-//         content = (
-//           <Link href={line.url} className="text-primary-50" target="_blank">
-//             {children[0]}
-//           </Link>
-//         );
-//         break;
-
-//       default:
-//         content = (
-//           <p key={index}>
-//             {line.children.map((child, childIndex) => {
-//               let childContent: React.ReactNode = child.text;
-
-//               if (child.bold) childContent = <strong>{childContent}</strong>;
-//               if (child.italic) childContent = <em>{childContent}</em>;
-//               if (child.underline) childContent = <u>{childContent}</u>;
-
-//               return (
-//                 <React.Fragment key={childIndex}>{childContent}</React.Fragment>
-//               );
-//             })}
-//           </p>
-//         );
-//     }
-
-//     return <React.Fragment key={index}>{content}</React.Fragment>;
-//   });
-// };
-
 const serializeDescription = (
   description: DescriptionLine[],
   theme: string
@@ -140,7 +23,6 @@ const serializeDescription = (
       );
     }
 
-    // Si es texto con formato
     let content: React.ReactNode = child.text || "";
 
     if (child.bold) content = <strong>{content}</strong>;
